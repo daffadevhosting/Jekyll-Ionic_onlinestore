@@ -7,8 +7,8 @@
                     <ion-icon name="menu" slot="icon-only"></ion-icon>
                 </ion-button>
             </ion-buttons>
-        </ion-menu-toggle>
-        <ion-title {% if page.url == '/home' %}class="lang pointer" data-key="golodog"{% elsif page.url == '/product' %}class="lang pointer" data-key="all_produk"{% elsif page.url == '/cart' %}class="lang pointer" data-key="cart"{% elsif page.url == '/payment' %}class="lang pointer" data-key="pembayaran"{% endif %} onclick="home()">{{page.title}}</ion-title>
+        </ion-menu-toggle><ion-router-link {% if page.url == '/' %}{% else %} href="{{site.baseurl}}/home"{% endif %}>
+        <ion-title {% if page.url == '/home' %}class="lang pointer" data-key="golodog"{% elsif page.url == '/product' %}class="lang pointer" data-key="all_produk"{% elsif page.url == '/cart' %}class="lang pointer" data-key="cart"{% elsif page.url == '/payment' %}class="lang pointer" data-key="pembayaran"{% endif %}>{{page.title}}</ion-title></ion-router-link>
         <ion-buttons slot="end">
             <ion-button id="click-trigger">
             <ion-icon name="language" slot="icon-only"></ion-icon>
@@ -36,7 +36,7 @@
           <ion-avatar>
             <img id="userImg" alt="profile" src="https://pub-51aa893e8f7e40d88e4457e53660ddcb.r2.dev/img/no_profile.webp" />
           </ion-avatar>
-          <ion-label class="lang" data-key="greeting" id="userName"></ion-label>
+          <ion-label class="lang" data-key="greeting" id="userName">Hallo agan</ion-label>
         </ion-chip>
     <ion-progress-bar type="indeterminate"></ion-progress-bar>
       </ion-toolbar>
