@@ -1,0 +1,58 @@
+---
+layout: compress
+---
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'id-ID' }}">
+    {% include head.html %}
+    <body id="Apps">
+        <ion-app>
+          <ion-content class="ion-padding">
+            {% include ion_menu.html %}
+            <div class="ion-page" id="main-content">
+            {% include ion_header.html %}
+            {% if page.url == '/home' %}
+                {% include banner.html %}
+            {% endif %}
+                <div class="container">
+                    {{content}}
+                </div>
+{% include ion_footer.html %}
+            </div>
+{% if page.layout == "etalase" %}
+<ion-fab class="cart_pills" id="cart-menu">
+<span class="simpleCart_quantity count_cart"></span>
+  <ion-fab-button id="open-cart">
+<ion-icon name="bag"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+{% include ion_modal.html %}
+{% endif %}
+{% include popup.html %}
+          </ion-content>
+        </ion-app>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+      Fancybox.bind('[data-fancybox="gallery"]', {
+        //
+      });
+      var modal = document.querySelector('ion-modal');
+      function checkOut() {
+        location.replace('/checkout');
+      }
+      function cancel() {
+        modal.dismiss(null, 'cancel');
+      }
+      function home() {
+        location.replace('/home');
+      }
+    </script>
+    <script src="{{ '/assets/js/simpleCart.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/add-to-cart.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/lazyload.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/dark.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/lang.js' | relative_url }}"></script>
+    <script src="https://use.fontawesome.com/75c2644482.js"></script>
+    </body>
+</html>

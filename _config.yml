@@ -1,0 +1,94 @@
+# Welcome to Jekyll!
+BlogID: 2141768081939130795
+dev: unangningEU
+title: Jekyll-Ionic
+avatar: 
+description: Online Shop Simplecart With Jekyl & Ionic v.7
+baseurl: "" 
+url: ""
+twitter_username: 
+github_username:  
+fb-pixel: 
+fb-appID: 
+fb-admin: 
+fb-profile: 
+fb-pages: 
+signal-id: 
+safari-web-ID: 
+G-verify: 
+comen: 
+
+# Build settings
+plugins:
+  - jekyll-minify-html
+  - jekyll-paginate
+  - jekyll-timeago
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-figure
+  - jekyll-dotenv
+
+# Frontmatter Defaults
+rating_options:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+
+collections:
+  blogs:
+  pages:
+  admin:
+    output: true
+
+permalink: /product/:title
+
+# Site Pagination
+paginate: 6
+paginate_path: /product/page:num/
+
+defaults:
+- scope:
+    type: posts
+  values:
+    layout: etalase
+
+- scope:
+    type: checkout
+  values:
+    layout: checkout_page
+
+- scope:
+    type: cart
+  values:
+    layout: cart_page
+
+- scope:
+    type: pages
+  values:
+    layout: page
+
+- scope:
+    type: blog
+  values:
+    layout: post
+
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    tags: '/tag/:name/'
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
+
+exclude: [lib, config.rb, .sass-cache, .env, Capfile, config, log, Rakefile, Rakefile.rb, tmp, Gemfile, Gemfile.lock, README.md, LICENSE.md, node_modules, _styles, gulpfile.js, package-lock.json]

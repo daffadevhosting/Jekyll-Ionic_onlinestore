@@ -1,0 +1,26 @@
+<div class="blog_section">
+{% for blog in site.blogs limit:3 %}
+    <ion-card>
+<ion-grid>
+  <ion-row>
+    <ion-col size="5" class="ion-float-left">
+      <img class="imgBox" src="{{site.baseurl}}{{ blog.image }}">
+    </ion-col>
+    <ion-col class="ion-float-right">
+      <div>
+        <ion-card-subtitle class="ion-margin-bottom" style="font-size:18px;">
+            <ion-router-link href="{{site.baseurl}}{{blog.url}}">{{blog.title | strip_html | strip | truncate: 15 }}&#x02026;</ion-router-link>
+        </ion-card-subtitle>
+        <p>{{ blog.content | strip_html | strip | truncate: 100 }}&#x02026;</p>
+        <ion-item lines="none">
+        <ion-buttons slot="end">
+        <ion-button size="small" color="primary" class="lang" data-key="baca">Baca</ion-button>
+        </ion-buttons>
+      </ion-item>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+    </ion-card>
+{% endfor %}
+</div>

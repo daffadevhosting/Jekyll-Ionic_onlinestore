@@ -1,0 +1,64 @@
+<script type="module">
+  const firebaseConfig = {
+      apiKey: "{{ site.env.API_KEY }}",
+      authDomain: "{{ site.env.AUTH_DOMAIN }}",
+      databaseURL: "{{ site.env.DATABASE_URL }}",
+      projectId: "{{ site.env.PROJECT_ID }}",
+      storageBucket: "{{ site.env.STORAGE_BUCKET }}",
+      messagingSenderId: "{{ site.env.SENDER_ID }}",
+      appId: "{{ site.env.APP_ID }}",
+      measurementId: "{{ site.env.MEASUREMENT_ID }}"
+  };
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const userSignedOutDiv = document.getElementById('user-signed-out');
+const userSignedInDiv = document.getElementById('user-signed-in');
+const userDisplayName = document.getElementById('user-display-name');
+const userName = document.getElementById('userName');
+const userEmail = document.getElementById('user-email');
+const userImg = document.getElementById('user_img');
+const signOutButton = document.getElementById('sign-out-button');
+const signInButton = document.getElementById('sign-in-button');
+
+function toggleUI() {
+if (auth.currentUser) {
+  signInButton.classList.add("hidden");
+  userName.textContent = auth.currentUser.displayName;
+  userDisplayName.textContent = auth.currentUser.displayName;
+  userEmail.textContent = auth.currentUser.email;
+} else {
+  location.href = "{{site.baseurl}}/";
+}
+if (firebase.auth().currentUser.photoURL){
+      document.querySelector('#user-display-img').src = firebase.auth().currentUser.photoURL
+}
+if (firebase.auth().currentUser.photoURL){
+      document.querySelector('#userImg').src = firebase.auth().currentUser.photoURL
+}
+}
+
+signOutButton.addEventListener('click', () => {
+auth.signOut();
+alert('Kamu akan meninggalkan halaman ini..');
+  location.href = "{{site.baseurl}}/";
+
+});
+
+auth.onAuthStateChanged(user => {
+toggleUI();
+});
+
+function addData(data) {
+  firebase.database().ref('/data').push(data);
+}
+
+function readData(callback) {
+  firebase.database().ref('/data').once('value').then(function(snapshot) {
+    var data = snapshot.val();
+    callback(data);
+  });
+}
+
+</script>

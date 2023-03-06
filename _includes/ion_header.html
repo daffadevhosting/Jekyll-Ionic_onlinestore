@@ -1,0 +1,61 @@
+
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-menu-toggle slot="start">
+            <ion-buttons>
+                <ion-button>
+                    <ion-icon name="menu" slot="icon-only"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-menu-toggle>
+        <ion-title {% if page.url == '/home' %}class="lang pointer" data-key="golodog"{% elsif page.url == '/product' %}class="lang pointer" data-key="all_produk"{% elsif page.url == '/cart' %}class="lang pointer" data-key="cart"{% elsif page.url == '/payment' %}class="lang pointer" data-key="pembayaran"{% endif %} onclick="home()">{{page.title}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button id="click-trigger">
+            <ion-icon name="language" slot="icon-only"></ion-icon>
+            </ion-button>
+<ion-popover size='auto' trigger="click-trigger" dismiss-on-select="true">
+  <ion-content class="ion-no-padding">
+    <ion-list lines="none">
+      <ion-item button="true" detail="false" id="en-btn" onclick="setLanguage('en')">
+          <ion-avatar slot="start">
+            <img alt="en" src="https://pub-51aa893e8f7e40d88e4457e53660ddcb.r2.dev/img/en.png" />
+          </ion-avatar>
+            <ion-label><h4>English</h4></ion-label>
+      </ion-item>
+      <ion-item button="true" detail="false" id="id-btn" onclick="setLanguage('id')">
+          <ion-avatar slot="start">
+            <img alt="en" src="https://pub-51aa893e8f7e40d88e4457e53660ddcb.r2.dev/img/id.png" />
+          </ion-avatar>
+            <ion-label><h4>Bahasa</h4></ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>
+</ion-popover>
+        </ion-buttons>
+        <ion-chip class="desktop_chips" color="primary" slot="end">
+          <ion-avatar>
+            <img id="userImg" alt="profile" src="https://pub-51aa893e8f7e40d88e4457e53660ddcb.r2.dev/img/no_profile.webp" />
+          </ion-avatar>
+          <ion-label class="lang" data-key="greeting" id="userName"></ion-label>
+        </ion-chip>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+<script>
+  let buffer = 0.3;
+  let progress = 0.2;
+  let progressBar = document.querySelector('ion-progress-bar');
+  progressBar.buffer = buffer;
+  setInterval(() => {
+    progressBar.buffer = buffer += 0.3;
+    progressBar.value = progress += 0.2;
+    if (progress > 1) {
+      setTimeout(() => {
+        progressBar.buffer = buffer = 0.1;
+        progressBar.value = progress = 0.1;
+        progressBar.classList.add("hidden");
+      }, 900);
+    }
+  }, 900);
+</script>

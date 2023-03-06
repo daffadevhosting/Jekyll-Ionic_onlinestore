@@ -1,0 +1,64 @@
+---
+layout: default
+title: Home
+permalink: /home
+---
+
+{% include auth.html %}
+<ion-card>
+    <ion-card-header class="flex_center space_between">
+        <ion-card-title class="lang" data-key="new_prod">Produk Terbaru</ion-card-title>
+            <ion-buttons>
+                <ion-button href="{{site.baseurl}}/tag/terbaru">
+                    <ion-label class="lang" data-key="lihat">Lihat Semua</ion-label>
+                    <ion-icon name="grid-outline" slot="end"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding over_x">
+<div class="InRight">
+        {% include section_produk_terbaru.html %}
+</div>
+    </ion-card-content>
+</ion-card>
+
+<ion-card>
+    <ion-card-header class="flex_center space_between">
+        <ion-card-title class="lang" data-key="new_best">Produk Terlaris</ion-card-title>
+            <ion-buttons>
+                <ion-button href="{{site.baseurl}}/tag/terlaris">
+                    <ion-label class="lang" data-key="lihat">Lihat Semua</ion-label>
+                    <ion-icon name="grid-outline" slot="end"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding">
+        {% include section_produk_terlaris.html %}
+    </ion-card-content>
+</ion-card>
+
+<div class="box_iklan">
+
+</div>
+
+<ion-card>
+    <ion-card-header class="flex_center space_between">
+        <ion-card-title class="lang" data-key="news">Info Terkini</ion-card-title>
+            <ion-buttons>
+                <ion-button href="{{site.baseurl}}/blogs">
+                    <ion-label class="lang" data-key="lihat">Lihat Semua</ion-label>
+                    <ion-icon name="grid-outline" slot="end"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding">
+        {% include section_latest_info.html %}
+    </ion-card-content>
+</ion-card>
+
+<div class="widget_section">
+        {% include widget_footer.html %}
+</div>
+
+
+

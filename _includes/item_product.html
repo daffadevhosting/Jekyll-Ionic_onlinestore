@@ -1,0 +1,28 @@
+
+    <div class="card">
+        <div class="img_product">
+            <img src="{{site.baseurl}}{{post.image}}" />
+        </div>
+        <div class="detail_product">
+            <h1 class="title">{{post.title}}</h1>
+    <div class="flex_center space_between mb-25">
+        <h3>{{ post.harga }}</h3>
+        <ion-buttons class="favorite-btn"><ion-button href="javascript:;" class="fav_btn" >
+    <span id="varian-{{ post.ID }}" class="like-btn">
+    <ion-icon name="bookmark" slot="icon-only"></ion-icon>
+    </span>
+    </ion-button></ion-buttons>
+    </div>
+            {% unless post.categories == empty %}{% for category in post.categories limit:2 %}
+            <ion-badge color="success" href="/category/{{ category | slugify }}/">
+                {{ category | slugize }}{% unless forloop.last %}{% endunless %}
+            </ion-badge>{% endfor %}{% endunless %}
+            <div class="btn_rate">
+                <div class="star">
+                    {% if post.rating_option == '1' %}{% include stars/star1.html %}{% elsif post.rating_option == '2' %}{% include stars/star2.html %}{% elsif post.rating_option == '3' %}{% include stars/star3.html %}{% elsif post.rating_option == '4' %}{% include stars/star4.html %}{% elsif post.rating_option == '5' %}{% include stars/star5.html %}{% endif %}
+                    <span>{{post.rating}}</span>
+                </div>
+                <ion-button class="btn_beli" href="{{site.baseurl}}{{post.url}}" color="success" fill="clear" class="lang" data-key="buy">Beli</ion-button>
+            </div>
+        </div>
+    </div>

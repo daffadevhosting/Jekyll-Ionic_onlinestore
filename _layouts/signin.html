@@ -1,0 +1,22 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'id-ID' }}">
+    {% include head.html %}
+    <body>
+        <ion-app>
+          <ion-content class="ion-no-padding">
+            {% include ion_menu.html %}
+            <div class="ion-page" id="main-content">
+            {% include ion_header.html %}
+                    {{content}}
+            </div>
+          </ion-content>
+        </ion-app>
+    <script src="{{ '/assets/js/app.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/dark.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/lang.js' | relative_url }}"></script>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!--<div class="wrapper">
+    <div class="title">
+        Pilih Varian
+    </div>
+    <div class="select_wrap">
+        <ul class="default_wrap">
+            <div class="icon">
+                <ion-icon name="chevron-down-circle-outline"></ion-icon>
+            </div>
+            <li>
+                <div class="option">
+                    <p> Varian </p>
+                </div>
+            </li>
+        </ul>
+        <ul class="select_ul">
+            {% for tali in page.tali %}
+            <li class="aktip">
+                <div class="option">
+                    <p> {{tali}} </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>-->
+<div class="selector">
+    <div id="selectField">
+        <p>Pilih Varian</p>
+            <div class="icon">
+                <ion-icon name="chevron-down-circle-outline"></ion-icon>
+            </div>
+    </div>
+        <ul id="list">
+            <li class="options">
+                    <p> test </p>
+            </li>
+        </ul>
+</div>
+            
+
+
+
+
+<script>
+var selectField = document.getElementById("selectField");
+var selectText = document.getElementById("selectText");
+var options = document.getElementByClass("options");
+
+    for(option of options){
+        option.onclick = function(){
+            selectText.innerHTML = this.textContent;
+    }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+- ID: 103
+  url: /product/Ant-Man-Quantumania
+  img: /assets/img/Ant-Man.webp
+  title: Ant-Man
+  harga: '200.000'
+  stock: Habis
+  rating: '5.0'
+  rating_option: '5'
+  categories: [Action, Comedy, Sci-Fi]
+
+- ID: 102
+  url: /product/Masker-Bordir
+  img: https://cf.shopee.co.id/file/6549ebebfdff7f4355dc0398f5f5b9e2
+  title: Masker dahlia
+  harga: '15.000'
+  stock: Tersedia
+  rating: '4.9'
+  rating_option: '5'
+  categories: [Masker, Bordir]
+
+- ID: 101
+  url: /product/Alexa-Strip-Dress
+  img: https://cf.shopee.co.id/file/id-11134201-23020-vtf28xh2ionve7
+  title: Alexa Strip Dress
+  harga: '110.000'
+  stock: Tersedia
+  rating: '3.5'
+  rating_option: '3'
+  categories: [Dress, Gamis]
+

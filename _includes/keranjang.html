@@ -1,0 +1,26 @@
+
+<style>
+  ion-thumbnail {
+    --size: 140px;
+    --border-radius: 14px;
+  }
+{% if page.layout == 'cart_page' %}
+.keranjang-box .simpleCart_items {
+    max-height: 515px;
+}
+{% endif %}
+</style>
+  <div class="keranjang-box simplecart-cart">
+    <div class="simpleCart_items"></div>
+    {% if page.url == "/cart" %}
+    <ion-footer class="harga-total fixed_footer">
+<ion-toolbar class="ion-no-padding width_foot">
+   <ion-label><span>Total Pembelian </span><span class="simpleCart_quantity"></span> items<br/> <span class="simpleCart_total"></span> </ion-label><br />
+<span style="font-size:10px;">( *Belum Termasuk Ongkir )</span>
+    <ion-buttons slot="end">
+          <ion-button onclick="checkOut()" fill="outline" color="primary">CheckOut</ion-button>
+    <ion-buttons>
+<ion-toolbar>
+    </ion-footer>
+    {% endif %}
+</div>

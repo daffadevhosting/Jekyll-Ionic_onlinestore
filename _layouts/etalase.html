@@ -1,0 +1,92 @@
+---
+layout: default
+---
+
+{% include breadcrumb.html %}
+<div class="single_product simpleCart_shelfItem" pageid="{{page.ID}}">
+{% if page.stok != 'Tersedia' %}
+<ion-backdrop [visible]="true"></ion-backdrop>
+{% else %}
+{% endif %}
+    <div class="single_image">
+
+            {% for style in page.pilihan %}
+          		<div id="varian-{{ forloop.index }}" class="style bounceIn" {% unless forloop.first %} style="display:none;" {% endunless %}>
+        				{% if page.stok != 'Tersedia' or style.path_stock != 'ada' %}<div class="habis"></div>{% else %}<ion-router-link href="{{ style.path_image }}" data-fancybox="gallery">
+            <img class="product_image lazyimg" src="{{site.baseurl}}/assets/img/placeholder.jpg" data-src="{{ style.path_image }}" alt="{{page.title}}" itemprop="image"></ion-router-link>{% endif %}
+          		</div>
+          	{% endfor %}
+        <img class="item_gambar hidden" src="{{page.image}}" />
+    </div>
+    <div class="detail_product">
+        <div class="item_nama title"><h2>{{page.title}}</h2></div>
+    <div class="flex_center space_between">
+        <div class="left_side">
+          <ion-buttons>
+            <ion-button href="javascript:;" class="fav_btn" >
+            <span id="varian-{{ page.ID }}" class="like-btn">
+            <ion-icon name="bookmark" slot="icon-only"></ion-icon></span>
+            </ion-button>
+          </ion-buttons>
+{% if page.layout == 'etalase' %}
+          <ion-buttons>
+            <ion-button id="likeButton">
+              <ion-icon name="heart-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button id="unlikeButton">
+              <ion-icon color="danger" name="heart" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+            <ion-text id="likeCount">0</ion-text>
+{% endif %}
+        </div>
+          
+        <div class="star">
+            {% if page.rating_option == '1' %}{% include stars/star1.html %}{% elsif page.rating_option == '2' %}{% include stars/star2.html %}{% elsif page.rating_option == '3' %}{% include stars/star3.html %}{% elsif page.rating_option == '4' %}{% include stars/star4.html %}{% elsif page.rating_option == '5' %}{% include stars/star5.html %}{% endif %}
+            <span>{{page.rating}}</span>
+        </div>
+    </div>
+<div class="harga flex_center space_between">
+        <div class="item_harga"><h1>{{page.harga}}</h1></div>
+        <ion-label class="pageStock">
+        {% if page.stok != 'Tersedia' %} <ion-chip color="danger" style="pointer-events:none;"><ion-label>Stok : Habis</ion-label><ion-icon name="close-circle-outline"></ion-icon></ion-chip>{% else %} <ion-chip color="success" style="pointer-events:none;"><ion-label>Stok : {{page.stok}}</ion-label><ion-icon name="checkmark-circle-outline"></ion-icon></ion-chip>{% endif %}</ion-label></div>
+
+<ion-accordion-group expand="inset">
+  <ion-accordion value="first">
+    <ion-item slot="header" color="light">
+      <ion-label class="lang" data-key="desc_prod">Deskipsi Produk</ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">
+      {{content}}
+    </div>
+  </ion-accordion>
+</ion-accordion-group>
+<ion-card>
+  <ion-card-content>
+        <div class="style-picker mb-30">
+            {% for style in page.pilihan %}
+<div id="varian-{{ forloop.index }}" {% if forloop.first %} class="btn-picker item_warna active" {% endif %} class="btn-picker" style="background-color:{{ style.path_warna }};"><span style="color:#fff">{{ style.path_nama }}</span></div>
+            {% endfor %}
+        	</div>
+<div class="selectionQ flex_center space_between mb-30">
+          <div class="btn_ticker flex_center">
+            {% for varian in page.varian %}
+            <li id="product-{{ forloop.index }}" class="btn_li_picker li-picker {% if forloop.first %}item_varian picker{% endif %}">{{ varian }}</li>
+            {% endfor %}
+          </div>
+</div>
+        <div class="flex_center space_between">
+                  <div class="quantity flex_center buttons_added" style="padding: 0.375rem 0.75rem;">
+                            <input type="button" value="-" class="minus btnPlusMinus" />
+                            <input type="text" step="1" min="1" max="12" name="quantity" value="1" title="Qty" class="item_Quantity input_text qty text-center" size="3" pattern="" inputmode="" disabled/>
+                            <input type="button" value="+" class="plus btnPlusMinus" />
+                  </div>
+            <ion-buttons class="btn-atc app-description-content">
+                    <ion-button{% if page.stok != 'Tersedia' %} color="danger"{% else %} color="primary"{% endif %} id="cartButton" class="item_add" slot="end" fill="outline" shape="round" href="javascript:;" {% if page.stok != 'Tersedia' %}disabled{% else %}{% endif %}>{% if page.stok != 'Tersedia' %}HABIS{% else %}Add To Cart{% endif %}</ion-button>
+            </ion-buttons>
+        </div>
+  </ion-card-content>
+</ion-card>
+    </div>
+</div>
+{%- include module.html -%}

@@ -1,0 +1,27 @@
+{
+  "name": "newtoko",
+  "version": "1.0.0",
+  "description": "ionicJekyll online-shop",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "online-shop",
+    "online-shopping",
+    "webshop",
+    "jekyll",
+    "ionic"
+  ],
+  "author": "unangningEU",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.58.3"
+  },
+  "dependencies": {
+    "firebase": "^9.17.2"
+  }
+}

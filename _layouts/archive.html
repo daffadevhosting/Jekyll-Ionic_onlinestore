@@ -1,0 +1,15 @@
+---
+layout: default
+title: Archive
+---
+
+{% include auth.html %}
+<h5><span>{{ page.type }}{% if page.url contains '/tag/' %} produk{% endif %} {{ page.title }}</span> {% if page.url contains '/tag/' %}bulan {{ site.time | date: '%B' }} ini{% endif %}</h5>
+
+<div class="etalase_product mobile_view">
+{% for post in page.posts %}
+
+{% include item_product.html %}
+
+{% endfor %}
+</div>

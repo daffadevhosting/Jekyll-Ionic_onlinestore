@@ -1,0 +1,46 @@
+---
+ID: 102
+title: Masker Dahlia
+harga: '15.000'
+stok: Tersedia
+categories: 'Masker'
+tags: Terlaris
+rating: '4.9'
+rating_option: '5'
+image: https://cf.shopee.co.id/file/6549ebebfdff7f4355dc0398f5f5b9e2
+pilihan:
+  - path_nama: Navi
+    path_warna: '#4a5265'
+    path_image: https://cf.shopee.co.id/file/706de3404cf14e97c9e321ee4011ef48
+    path_stock: ada
+  - path_nama: Mustard
+    path_warna: '#efa22c'
+    path_image: https://cf.shopee.co.id/file/7b97bd021da31ba26e893e411ffd1c37
+    path_stock: 'ada'
+  - path_nama: Krem
+    path_warna: '#d5c4b0'
+    path_image: https://cf.shopee.co.id/file/2c2d63fdab9064c091de7353ed387d36
+    path_stock: ada
+  - path_nama: Coksu
+    path_warna: '#b48c69'
+    path_image: https://cf.shopee.co.id/file/1765056e8a8cec8219a446bc000f6ec2
+    path_stock: ada
+  - path_nama: Abu
+    path_warna: '#a1a2a7'
+    path_image: https://cf.shopee.co.id/file/8871c8e8e4faff80da54f291ae8ff924
+    path_stock: ada
+  - path_nama: Pink
+    path_warna: '#d07897'
+    path_image: https://cf.shopee.co.id/file/d59989ac225832a3791e88e9388d4666
+    path_stock: ada
+  - path_nama: Toska
+    path_warna: '#298f83'
+    path_image: https://cf.shopee.co.id/file/df0a91841d6b71c9f4b96066ccc853f3
+    path_stock: ada
+varian:
+  - HeadLoop
+  - EarLoop
+  - Tali Ikat
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

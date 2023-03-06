@@ -1,0 +1,34 @@
+
+<div class="etalase_product">
+{% for item in site.data.produk_terbaru limit:4 %}
+<div class="card">
+    <div class="img_product">
+        <img src="{{site.baseurl}}{{ item.img }}" alt="{{ item.title }}" />
+    </div>
+    <div class="detail_product">
+        <h1 class="title">{{ item.title }}</h1>
+    <div class="flex_center space_between mb-25">
+        <h3>{{ item.harga }}</h3>
+        <ion-buttons class="favorite-btn">
+<ion-button href="javascript:;" class="fav_btn" >
+    <span id="varian-{{ item.ID }}" class="like-btn">
+    <ion-icon name="bookmark" slot="icon-only"></ion-icon>
+    </span>
+    </ion-button>
+</ion-buttons>
+    </div>
+{% unless item.categories == empty %}{% for category in item.categories limit:2 %}
+        <ion-badge color="warning" href="/category/{{ category | slugify }}/">
+            {{ category }}{% unless forloop.last %}{% endunless %}
+        </ion-badge>{% endfor %}{% endunless %}
+        <div class="btn_rate">
+            <div class="star">
+                {% if item.rating_option == '1' %}{% include stars/star1.html %}{% elsif item.rating_option == '2' %}{% include stars/star2.html %}{% elsif item.rating_option == '3' %}{% include stars/star3.html %}{% elsif item.rating_option == '4' %}{% include stars/star4.html %}{% elsif item.rating_option == '5' %}{% include stars/star5.html %}{% endif %}
+                <span>{{item.rating}}</span>
+            </div>
+            <ion-button size="small" class="btn_beli" href="{{item.url}}" color="primary" fill="outline">Beli</ion-button>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>

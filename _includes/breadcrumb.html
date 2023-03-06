@@ -1,0 +1,10 @@
+<!-- Breadcrumb -->
+<ion-breadcrumbs>
+  <ion-breadcrumb class="lang" data-key="golodog" href="{{site.baseurl}}/home">Golodog</ion-breadcrumb>
+  {% unless page.categories == empty %}{% for category in page.categories limit:1 %}<ion-breadcrumb href="/category/{{ category | slugify }}/">{{ category }}</ion-breadcrumb>{% unless forloop.last %}{% endunless %}{% endfor %}{% endunless %}
+  <ion-breadcrumb>{{page.title}}</ion-breadcrumb>
+</ion-breadcrumbs>
+<!-- end Breadcrumb -->
+
+    
+

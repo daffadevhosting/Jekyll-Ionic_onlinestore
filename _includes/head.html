@@ -1,0 +1,37 @@
+
+<head>
+    <title>{{site.title}}</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="color-scheme" content="light dark" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/fav/apple-touch-icon.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/fav/favicon-32x32.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/fav/favicon-16x16.png' | relative_url }}">
+    <link rel="manifest" href="{{ '/assets/fav/site.webmanifest' | relative_url }}">
+    <link rel="mask-icon" href="{{ '/assets/fav/safari-pinned-tab.svg' | relative_url }}" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ '/assets/fav/favicon.ico' | relative_url }}">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="{{ '/assets/fav/browserconfig.xml' | relative_url }}">
+    <meta name="theme-color" content="#ffffff">
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="{{ '/assets/js/jquery/jquery.min.js?v=3.6.0' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/vendor/@ionic/core/dist/ionic/ionic.esm.js?v=7.0' | relative_url }}"></script>
+    <script nomodule src="{{ '/assets/vendor/@ionic/core/dist/ionic/ionic.js?v=7.0' | relative_url }}"></script>
+    <link rel="stylesheet" href="{{ '/assets/vendor/@ionic/core/css/ionic.bundle.css?v=7.0' | relative_url }}" />
+  <script type="module">
+    import { toastController } from "{{ '/assets/vendor/@ionic/core/dist/ionic/index.esm.js?v=6.0' | relative_url }}";
+    window.toastController = toastController;
+  </script>
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/main.css?v=1.0.0' | relative_url }}" />
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/dark.css?v=6.5.6' | relative_url }}" />
+    <script src="https://use.fontawesome.com/75c2644482.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+</head>

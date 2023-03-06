@@ -1,0 +1,13 @@
+{
+  "posts" : {
+    "post1" : {
+      "title" : "Judul Post 1",
+      "content" : "Konten dari post 1"
+    },
+    "post2" : {
+      "title" : "Judul Post 2",
+      "content" : "Konten dari post 2"
+    }
+  }
+}
+

@@ -1,0 +1,236 @@
+
+<script type="module">
+    const firebaseConfig = {
+        apiKey: "{{ site.env.API_KEY }}",
+        authDomain: "{{ site.env.AUTH_DOMAIN }}",
+        databaseURL: "{{ site.env.DATABASE_URL }}",
+        projectId: "{{ site.env.PROJECT_ID }}",
+        storageBucket: "{{ site.env.STORAGE_BUCKET }}",
+        messagingSenderId: "{{ site.env.SENDER_ID }}",
+        appId: "{{ site.env.APP_ID }}",
+        measurementId: "{{ site.env.MEASUREMENT_ID }}"
+    };
+  
+  firebase.initializeApp(firebaseConfig);
+  
+  const auth = firebase.auth();
+  const userSignedOutDiv = document.getElementById('user-signed-out');
+  const userSignedInDiv = document.getElementById('user-signed-in');
+  const userDisplayName = document.getElementById('user-display-name');
+  const userName = document.getElementById('userName');
+  const userEmail = document.getElementById('user-email');
+  const userImg = document.getElementById('user_img');
+  const signOutButton = document.getElementById('sign-out-button');
+  const signInButton = document.getElementById('sign-in-button');
+  
+  function toggleUI() {
+  if (auth.currentUser) {
+    signInButton.classList.add("hidden");
+    userName.textContent = auth.currentUser.displayName;
+    userDisplayName.textContent = auth.currentUser.displayName;
+    userEmail.textContent = auth.currentUser.email;
+  } else {
+    location.href = "{{site.baseurl}}/";
+  }
+  if (firebase.auth().currentUser.photoURL){
+        document.querySelector('#user-display-img').src = firebase.auth().currentUser.photoURL
+  }
+  if (firebase.auth().currentUser.photoURL){
+        document.querySelector('#userImg').src = firebase.auth().currentUser.photoURL
+  }
+  }
+  
+  signOutButton.addEventListener('click', () => {
+  auth.signOut();
+  alert('Kamu akan meninggalkan halaman ini..');
+    location.href = "{{site.baseurl}}/";
+  
+  });
+  
+  auth.onAuthStateChanged(user => {
+  toggleUI();
+  });
+  
+  var database = firebase.database();
+  var firestore = firebase.firestore();
+  
+  // Tambahkan event listener ke tombol like
+  document.getElementById("likeButton").addEventListener("click", function() {
+  // Ambil UID pengguna yang sedang masuk
+  var user = firebase.auth().currentUser;
+  var uid = user.uid;
+  
+  // Tentukan halaman yang akan diberi like
+  var halaman = '{{page.ID}}';
+  
+  // Periksa apakah pengguna sudah memberikan like sebelumnya
+  firestore.collection('likes').doc(uid).get().then(function(doc) {
+    if (doc.exists) {
+      var data = doc.data();
+      if (data[halaman]) {
+        // Jika pengguna sudah memberikan like sebelumnya, tampilkan pesan
+        existAlert();
+        return;
+      }
+    }
+  
+  async function existAlert() {
+    const alert = document.createElement('ion-alert');
+    alert.message = 'Kamu sudah memberikan like untuk produk ini. 😎️';
+    alert.buttons = ['OK'];
+  
+    document.body.appendChild(alert);
+    await alert.present();
+  }
+  
+    // Tambahkan "like" ke Firestore database
+    var likeData = {};
+    likeData[halaman] = true;
+    firestore.collection('likes').doc(uid).set(likeData, { merge: true }).then(function() {
+      // Jika berhasil menambahkan "like", tampilkan pesan sukses
+      successAlert();
+      // Perbarui jumlah like
+      updateLikeCount(halaman);
+      // Tampilkan tombol unlike
+      // showUnlikeButton();
+    }).catch(function(error) {
+      // Jika gagal menambahkan "like", tampilkan pesan kesalahan
+      alert(error.message);
+    });
+  });
+  });
+  
+  async function successAlert() {
+    const alert = document.createElement('ion-alert');
+    alert.message = '🤩️ Terima Kasih sudah menyukai produk ini..!';
+    alert.buttons = ['OKEY'];
+  
+    document.body.appendChild(alert);
+    await alert.present();
+  }
+  
+  // Tambahkan event listener ke tombol unlike
+  document.getElementById("unlikeButton").addEventListener("click", function() {
+  // Ambil UID pengguna yang sedang masuk
+  var user = firebase.auth().currentUser;
+  var uid = user.uid;
+  
+  // Tentukan halaman yang akan di-unlike
+  var halaman = '{{page.ID}}';
+  
+  // Hapus "like" dari Firestore database
+  firestore.collection('likes').doc(uid).set({
+    [halaman]: firebase.firestore.FieldValue.delete()
+  }, { merge: true }).then(function() {
+    // Jika berhasil menghapus "like", tampilkan pesan sukses
+    eraseAlert();
+    // Perbarui jumlah like
+    updateLikeCount(halaman);
+    // Tampilkan tombol like
+    // showLikeButton();
+  }).catch(function(error) {
+    // Jika gagal menghapus "like", tampilkan pesan kesalahan
+    alert(error.message);
+  });
+  });
+  
+  async function eraseAlert() {
+    const alert = document.createElement('ion-alert');
+    alert.message = 'Kamu sudah tidak menyukai produk ini..! 😭️';
+    alert.buttons = ['Jangan Sedih'];
+  
+    document.body.appendChild(alert);
+    await alert.present();
+  }
+  
+  // Fungsi untuk mengambil jumlah like dari Firestore
+  function getLikeCount(halaman) {
+  return firestore.collection('likes').where(halaman, '==', true).get().then(function(querySnapshot) {
+    return querySnapshot.size;
+  });
+  }
+  
+  // Fungsi untuk memperbarui jumlah like di halaman HTML
+  function updateLikeCount(halaman) {
+  getLikeCount(halaman).then(function(count) {
+    document.getElementById("likeCount").textContent = count;
+  });
+  }
+  
+  const likeBtn = document.getElementById('likeButton');
+  likeBtn.addEventListener('click', () => {
+    likeBtn.classList.add('hidden');
+    unlikeBtn.classList.add('active');
+    localStorage.setItem('buttonState', likeBtn.classList.contains('hidden'));
+  });
+  const unlikeBtn = document.getElementById('unlikeButton');
+  unlikeBtn.addEventListener('click', () => {
+    likeBtn.classList.remove('hidden');
+    unlikeBtn.classList.remove('active');
+    localStorage.removeItem('buttonState', unlikeBtn.classList.contains('hidden'));
+  });
+  
+  // Set the initial state of the button when the page is loaded
+  const savedState = localStorage.getItem('buttonState');
+  if (savedState === 'true') {
+    likeBtn.classList.add('hidden');
+    unlikeBtn.classList.add('active');
+    } 
+  document.getElementById("unlikeButton").style.display = "none";
+  
+  // rating-stars
+  const stars = document.querySelectorAll('.star');
+  const databaseRef = firebase.database().ref('ratings');
+  let currentRating = 0;
+  
+  function setRating(starClicked) {
+  let clickedIndex = Array.from(stars).indexOf(starClicked);
+  
+  if (clickedIndex === -1) {
+    return;
+  }
+  
+  const newRating = clickedIndex + 1;
+  currentRating = newRating;
+  
+  // Update the rating in the database
+  databaseRef.set(newRating);
+  
+  for (let i = 0; i < stars.length; i++) {
+    if (i <= clickedIndex) {
+      stars[i].classList.add('active');
+    } else {
+      stars[i].classList.remove('active');
+    }
+  }
+  }
+  
+  stars.forEach((star) => {
+  star.addEventListener('click', () => {
+    setRating(star);
+  });
+  });
+  
+  // Listen for changes to the rating in the database
+  databaseRef.on('value', (snapshot) => {
+  const newRating = snapshot.val();
+  if (newRating !== null) {
+    currentRating = newRating;
+  
+    // Update the star ratings on the page
+    for (let i = 0; i < stars.length; i++) {
+      if (i < newRating) {
+        stars[i].classList.add('active');
+      } else {
+        stars[i].classList.remove('active');
+      }
+    }
+  }
+  });
+  
+  // Panggil fungsi updateLikeCount saat halaman selesai dimuat
+  document.addEventListener("DOMContentLoaded", function(event) { 
+  var halaman = '{{page.ID}}';
+  updateLikeCount(halaman);
+  });
+  </script>

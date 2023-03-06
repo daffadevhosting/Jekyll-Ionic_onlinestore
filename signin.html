@@ -1,0 +1,89 @@
+---
+layout: signin
+title: Sign In
+permalink: /
+---
+<style>
+.ion-padding {
+  padding: 0 !important;
+}
+.container {
+    max-width: -webkit-fill-available !important;
+    max-width: -moz-available !important;
+    margin: unset;
+    margin-top: unset;
+}
+.swiper, swiper-container {
+  height: -webkit-fill-available;
+  height: -moz-available;
+}
+</style>
+<swiper-container>
+  <swiper-slide>
+    <div class="banner">
+      <ion-chip class="geser" color="dark" style="pointer-events:none;">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        <ion-label class="lang" data-key="geser">GESEEERRRR</ion-label>
+      </ion-chip>
+      <img class="benner_img" src="./assets/img/banner/banner1.jpg" />
+    </div>
+  </swiper-slide>
+  <swiper-slide>
+    <div class="banner">
+      <img class="benner_img" src="./assets/img/banner/ionic.webp" />
+    </div>
+  </swiper-slide>
+  <swiper-slide>
+    <div class="signin_box">
+      <ion-card id="user-signed-out" class="box_login">
+        <img class="googl_icon" alt="Google" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/768px-Google_%22G%22_Logo.svg.png" />
+        <ion-card-header>
+          <ion-card-title class="lang" data-key="g_login">Masuk Menggunakan Google</ion-card-title>
+          <ion-card-subtitle class="lang" data-key="g_sub">Untuk melanjutkan silahkan login dengan akun google anda.</ion-card-subtitle>
+        </ion-card-header>
+                  <ion-button id="log-in-button" fill="clear">Sign in</ion-button>
+      </ion-card>
+    </div>
+  </swiper-slide>
+  ...
+</swiper-container>
+
+    <script type="module">
+      const firebaseConfig = {
+          apiKey: "{{ site.env.API_KEY }}",
+          authDomain: "{{ site.env.AUTH_DOMAIN }}",
+          databaseURL: "{{ site.env.DATABASE_URL }}",
+          projectId: "{{ site.env.PROJECT_ID }}",
+          storageBucket: "{{ site.env.STORAGE_BUCKET }}",
+          messagingSenderId: "{{ site.env.SENDER_ID }}",
+          appId: "{{ site.env.APP_ID }}",
+          measurementId: "{{ site.env.MEASUREMENT_ID }}"
+      };
+      firebase.initializeApp(firebaseConfig);
+      
+      const auth = firebase.auth();
+      
+      const userSignedInDiv = document.getElementById('user-signed-in');
+      const logInButton = document.getElementById('log-in-button');
+      const signInButton = document.getElementById('sign-in-button');
+
+      function toggleUI() {
+        if (auth.currentUser) {
+          location.href = "{{site.baseurl}}/home";
+        }
+      }
+      
+      signInButton.addEventListener('click', () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider);
+      });
+      
+      logInButton.addEventListener('click', () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider);
+      });
+      
+      auth.onAuthStateChanged(user => {
+        toggleUI();
+      });
+    </script>

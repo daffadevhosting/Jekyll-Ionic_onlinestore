@@ -1,0 +1,30 @@
+
+{% include auth.html %}
+<div id="data-list"></div>
+
+<script>
+  function showData(data) {
+    var dataList = document.getElementById("data-list");
+    dataList.innerHTML = "";
+    for (var key in data) {
+      var item = document.createElement("ul");
+      var name = document.createElement("li");
+      var email = document.createElement("li");
+      name.innerHTML = data[key].name;
+      email.innerHTML = data[key].email;
+      item.appendChild(name);
+      item.appendChild(email);
+      dataList.appendChild(item);
+    }
+  }
+  
+  function readData() {
+    firebase.database().ref('/posts').once('value').then(function(snapshot) {
+      var data = snapshot.val();
+      showData(data);
+    });
+  }
+  
+  readData();
+</script>
+
