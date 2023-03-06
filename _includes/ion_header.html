@@ -7,8 +7,8 @@
                     <ion-icon name="menu" slot="icon-only"></ion-icon>
                 </ion-button>
             </ion-buttons>
-        </ion-menu-toggle><ion-router-link {% if page.url == '/' %}{% else %} href="{{site.baseurl}}/home"{% endif %}>
-        <ion-title {% if page.url == '/home' %}class="lang pointer" data-key="golodog"{% elsif page.url == '/product' %}class="lang pointer" data-key="all_produk"{% elsif page.url == '/cart' %}class="lang pointer" data-key="cart"{% elsif page.url == '/payment' %}class="lang pointer" data-key="pembayaran"{% endif %}>{{page.title}}</ion-title></ion-router-link>
+        </ion-menu-toggle>
+        <ion-title onclick="home()"> <span {% if page.url == '/home' %}class="lang pointer" data-key="golodog"{% elsif page.url == '/product' %}class="lang pointer" data-key="all_produk"{% elsif page.url == '/cart' %}class="lang pointer" data-key="cart"{% elsif page.url == '/payment' %}class="lang pointer" data-key="pembayaran"{% endif %}>{{page.title}}</span></ion-title>
         <ion-buttons slot="end">
             <ion-button id="click-trigger">
             <ion-icon name="language" slot="icon-only"></ion-icon>

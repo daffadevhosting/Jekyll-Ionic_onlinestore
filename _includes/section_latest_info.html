@@ -12,9 +12,9 @@
             <ion-router-link href="{{site.baseurl}}{{blog.url}}">{{blog.title | strip_html | strip | truncate: 15 }}&#x02026;</ion-router-link>
         </ion-card-subtitle>
         <p>{{ blog.content | strip_html | strip | truncate: 100 }}&#x02026;</p>
-        <ion-item lines="none">
+        <ion-item lines="none"><ion-badge>{{blog.tags}}</ion-badge>
         <ion-buttons slot="end">
-        <ion-button size="small" color="primary" class="lang" data-key="baca">Baca</ion-button>
+        <ion-button href="{{site.baseurl}}{{blog.url}}" size="small" color="primary" class="lang" data-key="baca">Baca</ion-button>
         </ion-buttons>
       </ion-item>
       </div>
