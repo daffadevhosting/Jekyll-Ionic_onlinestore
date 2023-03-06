@@ -77,5 +77,9 @@
         en: 'Read',
         id: 'Baca'
       },
+      beli: {
+        en: 'Buy',
+        id: 'Beli'
+      },
     };
 

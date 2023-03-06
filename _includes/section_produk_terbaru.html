@@ -26,7 +26,7 @@
                 {% if item.rating_option == '1' %}{% include stars/star1.html %}{% elsif item.rating_option == '2' %}{% include stars/star2.html %}{% elsif item.rating_option == '3' %}{% include stars/star3.html %}{% elsif item.rating_option == '4' %}{% include stars/star4.html %}{% elsif item.rating_option == '5' %}{% include stars/star5.html %}{% endif %}
                 <span>{{item.rating}}</span>
             </div>
-            <ion-button size="small" class="btn_beli" href="{{item.url}}" color="primary" fill="outline">Beli</ion-button>
+            <ion-button size="small" class="btn_beli lang" data-key="beli" href="{{item.url}}" color="primary" fill="outline">Beli</ion-button>
         </div>
     </div>
 </div>
