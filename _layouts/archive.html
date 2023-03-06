@@ -4,8 +4,10 @@ title: Archive
 ---
 
 {% include auth.html %}
-<h5><span>{{ page.type }}{% if page.url contains '/tag/' %} produk{% endif %} {{ page.title }}</span> {% if page.url contains '/tag/' %}bulan {{ site.time | date: '%B' }} ini{% endif %}</h5>
-
+<ion-card>
+<ion-card-header>
+<h5><span>{{ page.type }}{% if page.url contains '/tag/' %} produk{% endif %} {{ page.title }}</span> {% if page.url contains '/tag/' %}bulan {{ site.time | date: '%B' }} ini{% endif %}</h5></ion-card-header>
+<ion-card-content class="ion-no-padding">
 <div class="etalase_product mobile_view">
 {% for post in page.posts %}
 
@@ -13,3 +15,5 @@ title: Archive
 
 {% endfor %}
 </div>
+</ion-card-content>
+</ion-card>

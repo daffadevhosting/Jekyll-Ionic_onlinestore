@@ -4,7 +4,7 @@ title: iPhone Emak
 harga: '6.700.000'
 stok: Tersedia
 categories: 'Gadget'
-tags: Terbaru
+tags: [Terbaru Terlaris]
 stars: star
 rating: '4.7'
 rating_option: '4'

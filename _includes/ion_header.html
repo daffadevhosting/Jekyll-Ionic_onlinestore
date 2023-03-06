@@ -36,7 +36,7 @@
           <ion-avatar>
             <img id="userImg" alt="profile" src="https://pub-51aa893e8f7e40d88e4457e53660ddcb.r2.dev/img/no_profile.webp" />
           </ion-avatar>
-          <ion-label class="lang" data-key="greeting" id="userName">Hallo agan</ion-label>
+          <ion-label {% if page.url == '/' %}class="lang" data-key="greeting"{% endif %} id="userName">Hallo agan</ion-label>
         </ion-chip>
     <ion-progress-bar type="indeterminate"></ion-progress-bar>
       </ion-toolbar>
