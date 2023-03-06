@@ -7,8 +7,6 @@ _styles
 .env
 .sass-cache
 gulpfile.js
-Gemfile
-Gemfile.lock
 node_modules
 data.json
 package.json
