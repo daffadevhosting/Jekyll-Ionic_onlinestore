@@ -1,4 +1,4 @@
-A static OnLine store $ blog, base on jekyll, ionic & Custom simpleCartJS with whatsapp checkout form.
+A static OnLine store & blog, base on jekyll, ionic & Custom simpleCartJS with whatsapp checkout form.
 
 ### Tech
 
