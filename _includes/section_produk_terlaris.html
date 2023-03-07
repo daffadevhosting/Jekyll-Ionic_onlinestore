@@ -3,7 +3,7 @@
 {% for laris in site.data.produk_terlaris limit:4 %}
 <div class="card" pageId="{{laris.ID}}">
     <div class="img_product">
-        <img src="{{site.baseurl}}{{ laris.img }}" alt="{{ laris.title }}" />
+        <img class="lazyimg" src="{{ '/assets/img/placeholder.jpg' | relative_url }}" data-src="{{site.baseurl}}{{ laris.img }}" alt="{{ laris.title }}" />
     </div>
     <div class="detail_product">
         <h1 class="title">{{ laris.title }}</h1>

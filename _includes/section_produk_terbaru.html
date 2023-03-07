@@ -3,7 +3,7 @@
 {% for item in site.data.produk_terbaru limit:4 %}
 <div class="card">
     <div class="img_product">
-        <img src="{{site.baseurl}}{{ item.img }}" alt="{{ item.title }}" />
+        <img class="lazyimg" src="{{ '/assets/img/placeholder.jpg' | relative_url }}" data-src="{{site.baseurl}}{{ item.img }}" alt="{{ item.title }}" />
     </div>
     <div class="detail_product">
         <h1 class="title">{{ item.title }}</h1>
