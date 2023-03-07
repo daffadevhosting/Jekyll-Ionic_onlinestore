@@ -36,7 +36,9 @@ title: Checkout
 </ion-item>
 <ion-item>
   <ion-label position="stacked">E-Mail</ion-label>
-                  <ion-input id="email" type="email" class="email wajib" placeholder="Alamat E-mail"></ion-input>
+                  <ion-input type="email" id="email" class="email wajib" placeholder="Alamat E-mail"></ion-input>
+  <ion-note slot="helper">Enter a valid email</ion-note>
+  <ion-note slot="error">Invalid email</ion-note>
 </ion-item>
         <ion-item>
           <ion-label>Kurir</ion-label>
@@ -65,9 +67,10 @@ title: Checkout
 <style>.grecaptcha-badge{z-index:1;}</style>
 <div class="g-recaptcha"
       data-sitekey="{{ site.env.SITE_KEY }}"
-      data-callback="onSubmit"
+      data-callback="#order"
       data-size="invisible">
 </div>
 <script>grecaptcha.execute();</script>
 </ion-card>
+
 
