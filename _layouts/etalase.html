@@ -12,7 +12,7 @@ layout: default
 
             {% for style in page.pilihan %}
           		<div id="varian-{{ forloop.index }}" class="style bounceIn" {% unless forloop.first %} style="display:none;" {% endunless %}>
-        				{% if page.stok != 'Tersedia' or style.path_stock != 'ada' %}<div class="habis"></div>{% else %}<ion-router-link href="{{ style.path_image }}" data-fancybox="gallery">
+        				{% if page.stok != 'Tersedia' or style.path_stock != 'ada' %}<div id="stokHabis" class="habis"></div>{% else %}<ion-router-link href="{{ style.path_image }}" data-fancybox="gallery">
             <img class="product_image lazyimg" src="{{site.baseurl}}/assets/img/placeholder.jpg" data-src="{{ style.path_image }}" alt="{{page.title}}" itemprop="image"></ion-router-link>{% endif %}
           		</div>
           	{% endfor %}

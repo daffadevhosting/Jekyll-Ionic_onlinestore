@@ -8,6 +8,36 @@ $('.btn_ticker li').click(function() {
   $(this).toggleClass('item_varian picker').siblings().removeClass('item_varian picker');
 });
 
+/*$('.style-picker div').click(function() {
+  var target = $('#viewStock');
+  $(target).addClass('active').siblings().removeClass('active');
+  $(target).show().siblings('span').hide();
+});*/
+// Ambil elemen tombol pembelian
+var tombolBeli = document.getElementById("cartButton");
+
+// Ambil elemen jumlah stok
+const jumlahStok = document.querySelector('#stokHabis');
+
+// Cek apakah jumlah stok kosong pada varian tertentu
+if (jumlahStok.active = false) {
+  // Nonaktifkan tombol pembelian
+  tombolBeli.disabled = true;
+} else {
+  // Aktifkan tombol pembelian
+  tombolBeli.disabled = false;
+}
+
+const animateOnScroll = document.querySelector('.animate_on_scroll');
+
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY + window.innerHeight;
+  const elementPosition = animateOnScroll.offsetTop + animateOnScroll.offsetHeight / 2;
+  if (scrollPosition >= elementPosition) {
+    animateOnScroll.classList.add('animate');
+  }
+});
+
 function wcqib_refresh_quantity_increments() {
   jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
       var c = jQuery(b);
