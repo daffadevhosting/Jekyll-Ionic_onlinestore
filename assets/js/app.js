@@ -12,7 +12,7 @@ $('.btn_ticker li').click(function() {
   var target = $('#viewStock');
   $(target).addClass('active').siblings().removeClass('active');
   $(target).show().siblings('span').hide();
-});*/
+});
 // Ambil elemen tombol pembelian
 var tombolBeli = document.getElementById("cartButton");
 
@@ -26,7 +26,7 @@ if (jumlahStok.active = false) {
 } else {
   // Aktifkan tombol pembelian
   tombolBeli.disabled = false;
-}
+}*/
 
 const animateOnScroll = document.querySelector('.animate_on_scroll');
 
@@ -162,3 +162,27 @@ closeButton.addEventListener("click", () => {
   setLastShownTime();
 });
 
+  const item = document.querySelector('ion-item');
+  const input = item.querySelector('ion-input');
+
+  input.addEventListener('ionInput', (ev) => validate(ev));
+  input.addEventListener('ionBlur', () => markTouched());
+
+  const validateEmail = (email) => {
+    return email.match(/^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
+  };
+
+  const validate = (ev) => {
+    const value = ev.target.value;
+
+    item.classList.remove('ion-valid');
+    item.classList.remove('ion-invalid');
+
+    if (value === "") return;
+
+    validateEmail(value) ? item.classList.add('ion-valid') : item.classList.add('ion-invalid');
+  }
+
+  const markTouched = () => {
+    item.classList.add('ion-touched');
+  }

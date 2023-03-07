@@ -72,7 +72,7 @@ defaults:
     layout: page
 
 - scope:
-    type: blog
+    type: blogs
   values:
     layout: post
 
