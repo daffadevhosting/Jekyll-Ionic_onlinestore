@@ -77,9 +77,9 @@
         en: 'Read',
         id: 'Baca'
       },
-      beli: {
-        en: 'Buy',
-        id: 'Beli'
+      suka: {
+        en: 'Likes',
+        id: 'Suka'
       },
     };
 
