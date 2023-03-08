@@ -9,7 +9,7 @@ title: Checkout
 <ion-card class="review_checkout">
   <ion-item>
     <ion-icon name="cart-outline" slot="start"></ion-icon>
-    <ion-label>Keranjang Belanja Kamu</ion-label>
+    <ion-label class="lang" data-key="kranjang">Keranjang Belanja Kamu</ion-label>
     <ion-note slot="end" color="primary"><ion-badge color="danger" id="cart-menu" class="simpleCart_quantity"></ion-badge></ion-note>
   </ion-item>
 <ion-card-content class="ion-no-padding">
@@ -20,9 +20,9 @@ title: Checkout
 <ion-card class="card_form">
 <form class='wrapHead data-form validate-form' id='whatsapp-order'>
 <div class="not_if">
-      <span>Total belanja </span>sebesar <b style="font-size:larger;font-weight:900;"><span class="simpleCart_total"></span></b><p/>
-<span style="font-size:10px;"> ( *Belum Termasuk Ongkir )</span><p/>
-<ion-note color="danger">Silahkan isi data pengiriman dibawah ini..</ion-note>
+      <span class="lang" data-key="totalbeli">Total belanja sebesar</span> <b style="font-size:larger;font-weight:900;"><span class="simpleCart_total"></span></b><p/>
+<span style="font-size:10px;" class="lang" data-key="noongkir"> ( *Belum Termasuk Ongkir )</span><p/>
+<ion-note color="danger" class="lang" data-key="datakirim">Silahkan isi data pengiriman dibawah ini..</ion-note>
 </div>
 <p/><br/>
 <input class='order adminwa' id='AdminToko' value="{{ site.env.WA_NUMBR }}" type='hidden'/>

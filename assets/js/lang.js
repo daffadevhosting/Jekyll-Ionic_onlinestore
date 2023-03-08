@@ -81,5 +81,21 @@
         en: 'Likes',
         id: 'Suka'
       },
+      totalbeli: {
+        en: 'Total Purchases',
+        id: 'Total Pembelian'
+      },
+      noongkir: {
+        en: '*Excluding Postage',
+        id: '*Belum Termasuk Ongkir'
+      },
+      datakirim: {
+        en: 'Please fill in the shipping data below.',
+        id: 'Silahkan isi data pengiriman dibawah ini..'
+      },
+      kranjang: {
+        en: 'Your Shopping Cart',
+        id: 'Keranjang Belanja Kamu'
+      },
     };
 
