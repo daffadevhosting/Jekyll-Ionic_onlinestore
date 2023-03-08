@@ -50,6 +50,9 @@ auth.onAuthStateChanged(user => {
 toggleUI();
 });
 
+  var database = firebase.database();
+  var firestore = firebase.firestore();
+
 function addData(data) {
   firebase.database().ref('/data').push(data);
 }
@@ -61,4 +64,25 @@ function readData(callback) {
   });
 }
 
+var halaman = "101";
+
+  // Fungsi untuk mengambil jumlah like dari Firestore
+function getLikeCount(halaman) {
+  return firestore.collection('likes').where(halaman, '==', true).get().then(function(querySnapshot) {
+    return querySnapshot.size;
+  });
+}
+  
+  // Fungsi untuk memperbarui jumlah like di halaman HTML
+function updateLikeCount(halaman) {
+  getLikeCount(halaman).then(function(count) {
+    document.getElementById("likeCount").textContent = count;
+  });
+}
+
+  // Panggil fungsi updateLikeCount saat halaman selesai dimuat
+  document.addEventListener("DOMContentLoaded", function(event) { 
+var halaman = "101";
+  updateLikeCount(halaman);
+  });
 </script>

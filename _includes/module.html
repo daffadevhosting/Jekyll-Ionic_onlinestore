@@ -126,8 +126,6 @@
     eraseAlert();
     // Perbarui jumlah like
     updateLikeCount(halaman);
-    // Tampilkan tombol like
-    // showLikeButton();
   }).catch(function(error) {
     // Jika gagal menghapus "like", tampilkan pesan kesalahan
     alert(error.message);
@@ -169,8 +167,7 @@
     unlikeBtn.classList.remove('active');
     localStorage.removeItem('buttonState', unlikeBtn.classList.contains('hidden'));
   });
-  
-  // Set the initial state of the button when the page is loaded
+
   const savedState = localStorage.getItem('buttonState');
   if (savedState === 'true') {
     likeBtn.classList.add('hidden');
@@ -193,7 +190,6 @@
   const newRating = clickedIndex + 1;
   currentRating = newRating;
   
-  // Update the rating in the database
   databaseRef.set(newRating);
   
   for (let i = 0; i < stars.length; i++) {
@@ -211,13 +207,11 @@
   });
   });
   
-  // Listen for changes to the rating in the database
   databaseRef.on('value', (snapshot) => {
   const newRating = snapshot.val();
   if (newRating !== null) {
     currentRating = newRating;
   
-    // Update the star ratings on the page
     for (let i = 0; i < stars.length; i++) {
       if (i < newRating) {
         stars[i].classList.add('active');

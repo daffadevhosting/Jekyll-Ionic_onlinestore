@@ -1,7 +1,7 @@
 
 <div class="etalase_product">
 {% for item in site.data.produk_terbaru limit:4 %}
-<div class="card">
+<div class="card" pageId="{{item.ID}}"}>
     <div class="img_product">
         <img class="lazyimg" src="{{ '/assets/img/placeholder.jpg' | relative_url }}" data-src="{{site.baseurl}}{{ item.img }}" alt="{{ item.title }}" />
     </div>
@@ -9,6 +9,7 @@
         <h1 class="title">{{ item.title }}</h1>
     <div class="flex_center space_between mb-25">
         <h3>{{ item.harga }}</h3>
+            <ion-badge class="mb-20">Likes: <ion-text id="likeCount">0</ion-text></ion-badge>
         <ion-buttons class="favorite-btn">
 <ion-button href="javascript:;" class="fav_btn" >
     <span id="varian-{{ item.ID }}" class="like-btn">
