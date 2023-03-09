@@ -28,6 +28,14 @@ if (jumlahStok.active = false) {
   tombolBeli.disabled = false;
 }*/
 
+function gridster() {
+    var grid = document.getElementById("grid");
+        if (grid.className == "blog_section") {
+        grid.className = "blog_gridster";
+    } else {
+        grid.className = "blog_section";
+    }
+}
 const animateOnScroll = document.querySelector('.animate_on_scroll');
 
 window.addEventListener('scroll', () => {

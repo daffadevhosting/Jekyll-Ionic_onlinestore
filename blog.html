@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: compress
 ---
-
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'id-ID' }}">
     {% include head.html %}
@@ -11,7 +10,7 @@ layout: post
             {% include ion_menu.html %}
             <div class="ion-page" id="main-content">
             {% include ion_header.html %}
-                    {{content}}
+            {% include blogger.html %}
             </div>
 {% include popup.html %}
           </ion-content>

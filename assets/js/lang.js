@@ -49,6 +49,10 @@
         en: 'Latest Info',
         id: 'Info Terkini'
       },
+      blog: {
+        en: 'Blog Post',
+        id: 'Postingan'
+      },
       geser: {
         en: 'Slide Out',
         id: 'Geseeeer'

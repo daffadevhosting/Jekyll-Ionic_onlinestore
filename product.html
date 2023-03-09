@@ -6,7 +6,7 @@ permalink: /product
 
 {% include auth.html %}
 <div class="etalase_product mobile_view">
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
     <div class="card" id="{{ post.ID }}">
         <div class="img_product">
             <img src="{{site.baseurl}}{{post.image}}" />
