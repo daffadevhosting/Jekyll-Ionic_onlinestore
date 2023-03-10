@@ -18,6 +18,7 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "{{site.baseurl}}/a
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
+'{% if page.url == "/admin" %}'
 //fungsi login
 $('#loginButton').click(() => {
   const email = $('#email').val();
@@ -60,29 +61,29 @@ $('#loginButton').click(() => {
   }
 });
 
-'{% if page.url == "/admin/dashboard" %}'
+'{% elsif page.url == "/admin/dashboard" %}'
 
 // Mengecek apakah user sudah login
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    // Jika user sudah login, cek peran user pada database
-    var userId = firebase.auth().currentUser.uid;
-    var userRef = firebase.database().ref('users/' + userId);
-    userRef.once('value').then(function(snapshot) {
-      var role = snapshot.val().role;
-      if (role === 'admin') {
-        // Jika user adalah admin, izinkan akses ke halaman terbatas
-        console.log('User is admin');
-      } else {
-        // Jika user bukan admin, batasi akses ke halaman terbatas
-        console.log('User is not admin');
-        window.location.href = '{{site.baseurl}}/restricted';
-      }
-    });
+    // Mendapatkan informasi user dari database
+database.ref('users/' + user.uid).once('value').then(snapshot => {
+  if (snapshot && snapshot.exists()) {
+    const userData = snapshot.val();
+
+    if (userData.role === 'admin') {
+      // User adalah admin, lanjutkan ke halaman yang diinginkan
+    } else {
+      // User bukan admin, arahkan kembali ke halaman login
+      window.location.href = '{{site.baseurl}}/admin';
+    }
   } else {
-    // Jika user belum login, arahkan ke halaman login
-    console.log('User is not logged in');
-    window.location.href = '{{site.baseurl}}/admin';
+    // Data user tidak ditemukan, arahkan kembali ke halaman lain
+    window.location.href = '{{site.baseurl}}/';
+  }
+    }).catch(error => {
+      console.log(error);
+    });
   }
 });
 
