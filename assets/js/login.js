@@ -1,3 +1,7 @@
+import { initializeApp } from "../vendor/firebase/firebase-app.js";
+import { getAnalytics } from "../vendor/firebase/firebase-analytics.js";
+import { getAuth, signInWithEmailAndPassword, signOut } from "../vendor/firebase/firebase-auth.js";
+
 //inisialisasi Firebase Realtime Database
   const firebaseConfig = {
       apiKey: "{{ site.env.API_KEY }}",
@@ -29,7 +33,7 @@ $('#loginButton').click(() => {
           const userData = snapshot.val();
           if (userData.role === 'admin') {
             // Alihkan ke halaman admin
-            window.location.href = '/admin';
+            window.location.href = './dashboard';
           } else {
             // Tampilkan pesan kesalahan
             Alert();
@@ -48,7 +52,7 @@ $('#loginButton').click(() => {
   
   async function Alert() {
     const alert = document.createElement('ion-alert');
-    alert.message = 'Username atau password, SALAH!';
+    alert.message = 'E-mail atau password, SALAH!';
     alert.buttons = ['OK'];
   
     document.body.appendChild(alert);
