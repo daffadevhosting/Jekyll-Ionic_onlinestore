@@ -170,27 +170,17 @@ closeButton.addEventListener("click", () => {
   setLastShownTime();
 });
 
-  const item = document.querySelector('ion-item');
-  const input = item.querySelector('ion-input');
 
-  input.addEventListener('ionInput', (ev) => validate(ev));
-  input.addEventListener('ionBlur', () => markTouched());
+function setCookie() {
+	document.cookie = "cookieNotificationShown=true; expires=Thu, 31 Dec 2999 23:59:59 UTC; path=/";
+	document.querySelector(".popup-container").style.display = "none";
+}
 
-  const validateEmail = (email) => {
-    return email.match(/^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
-  };
+function checkCookie() {
+	if (document.cookie.indexOf("cookieNotificationShown=true") == -1) {
+		document.querySelector(".popup-container").style.display = "flex";
+	}
+}
 
-  const validate = (ev) => {
-    const value = ev.target.value;
+window.onload = checkCookie;
 
-    item.classList.remove('ion-valid');
-    item.classList.remove('ion-invalid');
-
-    if (value === "") return;
-
-    validateEmail(value) ? item.classList.add('ion-valid') : item.classList.add('ion-invalid');
-  }
-
-  const markTouched = () => {
-    item.classList.add('ion-touched');
-  }
