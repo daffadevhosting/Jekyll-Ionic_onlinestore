@@ -172,7 +172,7 @@ closeButton.addEventListener("click", () => {
 
 
 function setCookie() {
-	document.cookie = "cookieNotificationShown=true; expires=Thu, 31 Dec 2999 23:59:59 UTC; path=/";
+	document.cookie = "cookieNotificationShown=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
 	document.querySelector(".popup-container").style.display = "none";
 }
 
