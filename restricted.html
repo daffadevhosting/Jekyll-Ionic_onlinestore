@@ -3,15 +3,19 @@ layout: default
 ---
 
 {% include auth.html %}
-<div class="flex_center">
-<h1>RESTRICTED</h1>
-<br/>
-<div class="flex_center"><ion-text><h2>ANDA BUKAN ADMIN</h2></ion-text></div>
+<div class="mx-auto">
+<div class="flex_center justify_center">
+    <ion-card>
+        <ion-card-content>
+            <h1>RESTRICTED</h1>
+            <p>
+            <div class="flex_center">
+                <ion-text>
+                    <h2>ANDA BUKAN ADMIN</h2>
+                </ion-text>
+            </div>
+        </ion-card-content>
+    </ion-card>
 </div>
-<script>
-    function pageRedirect() {
-        window.location.replace("{{ site.baseurl }}/home");
-    }      
-    setTimeout("pageRedirect()", 5000);
-</script>
+</div>
 

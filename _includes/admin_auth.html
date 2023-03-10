@@ -12,6 +12,8 @@
   };
 
 firebase.initializeApp(firebaseConfig);
+const signOutButton = document.getElementById('logout');
+
 '{% if page.url == "/admin/dashboard" %}'
   function toggleUI() {
   if (auth.currentUser) {
@@ -20,6 +22,13 @@ firebase.initializeApp(firebaseConfig);
   }
 }
 '{% endif %}'
+$('#signOutButton').click(() => {
+  firebase.auth().signOut().then(() => {
+    location.href = "{{site.baseurl}}/";
+  }).catch((error) => {
+    alert(error.message);
+  });
+});
 var database = firebase.database();
 var auth = firebase.auth();
 

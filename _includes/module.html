@@ -23,7 +23,7 @@
   const signOutButton = document.getElementById('sign-out-button');
   const signInButton = document.getElementById('sign-in-button');
   
-  function toggleUI() {
+function toggleUI() {
   if (auth.currentUser) {
     signInButton.classList.add("hidden");
     userName.textContent = auth.currentUser.displayName;
@@ -38,7 +38,7 @@
   if (firebase.auth().currentUser.photoURL){
         document.querySelector('#userImg').src = firebase.auth().currentUser.photoURL
   }
-  }
+}
   
   signOutButton.addEventListener('click', () => {
   auth.signOut();

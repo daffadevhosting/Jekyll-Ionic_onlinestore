@@ -170,17 +170,17 @@ closeButton.addEventListener("click", () => {
   setLastShownTime();
 });
 
+// Cek apakah cookie telah diatur sebelumnya
+if (document.cookie.indexOf('popupShown=true') === -1) {
 
-function setCookie() {
-	document.cookie = "cookieNotificationShown=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
-	document.querySelector(".popup-container").style.display = "none";
+  // Tampilkan popup
+  // Ganti kode ini dengan kode yang sesuai untuk menampilkan popup Anda
+  alert('Ini adalah popup Anda.');
+
+  // Atur cookie dengan masa kedaluwarsa 1 minggu
+  var now = new Date();
+  var expireDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  document.cookie = 'popupShown=true; expires=' + expireDate.toUTCString() + '; path=/';
+
 }
-
-function checkCookie() {
-	if (document.cookie.indexOf("cookieNotificationShown=true") == -1) {
-		document.querySelector(".popup-container").style.display = "flex";
-	}
-}
-
-window.onload = checkCookie;
 
