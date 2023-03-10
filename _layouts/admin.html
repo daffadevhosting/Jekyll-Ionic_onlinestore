@@ -6,6 +6,6 @@ layout: compress
 {% include head_admin.html %}
     <body>
 {{content}}
-    <script defer src="{{ '/assets/js/login.js' | relative_url }}"></script>
+{% include admin_auth.html %}
     </body>
 </html>
