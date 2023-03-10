@@ -41,6 +41,10 @@ rating_options:
 collections:
   blog:
     output: true
+  admin:
+    output: true
+  pages:
+    output: true
 
 permalink: /product/:title
 

@@ -1,0 +1,39 @@
+---
+layout: compress
+---
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'id-ID' }}">
+    {% include head_admin.html %}
+    <body id="themeToggle">
+        <ion-app>
+          <ion-content class="ion-padding">
+    <div class="flex_center">
+        <div class="box">
+            <span class="borderLine"></span>
+            <form>
+                <h2>Admin Login</h2>
+                <div class="inputBox">
+                    <input type="email" id="email" required="required">
+                    <span>E-Mail</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="password" required="required">
+                    <span>Password</span>
+                    <i></i>
+                </div>
+<ion-buttons>
+<ion-button id="loginButton"> Login 
+</ion-button>
+</ion-buttos>
+            </form>
+        </div>
+     </div>
+          </ion-content>
+        </ion-app>
+    <script type="module" src="{{ '/assets/js/login.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/dark.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/lang.js' | relative_url }}"></script>
+    <script src="https://use.fontawesome.com/75c2644482.js"></script>
+    </body>
+</html>

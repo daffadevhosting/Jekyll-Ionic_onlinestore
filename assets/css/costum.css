@@ -14,6 +14,13 @@ body {
     background: #23242a;
     padding: 10px;
 }
+.flex_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90svh;
+    overflow-y: hidden;
+    }
 .box {
     position: relative;
     width: 380px;
