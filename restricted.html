@@ -1,6 +1,15 @@
 ---
 layout: default
 ---
+
+{% include auth.html %}
 <h1>RESTRICTED</h1>
 <br/>
-<div class="flex_center"><ion-text><h2>ANDA Belum Login</h2></ion-text></div>
+<div class="flex_center"><ion-text><h2>ANDA BUKAN ADMIN</h2></ion-text></div>
+<script>
+    function pageRedirect() {
+        window.location.replace("{{ site.baseurl }}/home");
+    }      
+    setTimeout("pageRedirect()", 300000);
+</script>
+

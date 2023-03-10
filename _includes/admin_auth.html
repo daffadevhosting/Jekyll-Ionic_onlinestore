@@ -1,8 +1,4 @@
 <script type="module">
-import { initializeApp } from "{{site.baseurl}}/assets/vendor/firebase/firebase-app.js";
-import { getAnalytics } from "{{site.baseurl}}/assets/vendor/firebase/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, signOut } from "{{site.baseurl}}/assets/vendor/firebase/firebase-auth.js";
-
 //inisialisasi Firebase Realtime Database
   const firebaseConfig = {
       apiKey: "{{ site.env.API_KEY }}",
@@ -16,9 +12,17 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "{{site.baseurl}}/a
   };
 
 firebase.initializeApp(firebaseConfig);
+'{% if page.url == "/admin/dashboard" %}'
+  function toggleUI() {
+  if (auth.currentUser) {
+  } else {
+    location.href = "{{site.baseurl}}/restricted";
+  }
+}
+'{% endif %}'
 var database = firebase.database();
+var auth = firebase.auth();
 
-'{% if page.url == "/admin" %}'
 //fungsi login
 $('#loginButton').click(() => {
   const email = $('#email').val();
@@ -37,8 +41,8 @@ $('#loginButton').click(() => {
             // Alihkan ke halaman admin
             window.location.href = './dashboard';
           } else {
-            // Tampilkan pesan kesalahan
-            Alert();
+              // User bukan admin, arahkan kembali ke luar
+              window.location.href = '/';
           }
         })
         .catch((error) => {
@@ -59,12 +63,13 @@ $('#loginButton').click(() => {
     document.body.appendChild(alert);
     await alert.present();
   }
+
 });
 
-'{% elsif page.url == "/admin/dashboard" %}'
-
+'{% if page.url == "/admin/dashboard" %}'
 // Mengecek apakah user sudah login
 firebase.auth().onAuthStateChanged(function(user) {
+  toggleUI();
   if (user) {
     // Mendapatkan informasi user dari database
 database.ref('users/' + user.uid).once('value').then(snapshot => {
@@ -79,13 +84,12 @@ database.ref('users/' + user.uid).once('value').then(snapshot => {
     }
   } else {
     // Data user tidak ditemukan, arahkan kembali ke halaman lain
-    window.location.href = '{{site.baseurl}}/';
+    window.location.href = '{{site.baseurl}}/restricted';
   }
     }).catch(error => {
       console.log(error);
     });
   }
 });
-
 '{% endif %}'
 </script>
