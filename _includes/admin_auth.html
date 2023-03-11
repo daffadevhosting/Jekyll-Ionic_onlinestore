@@ -1,104 +1,105 @@
 <script type="module">
-//inisialisasi Firebase Realtime Database
-  const firebaseConfig = {
-      apiKey: "{{ site.env.API_KEY }}",
-      authDomain: "{{ site.env.AUTH_DOMAIN }}",
-      databaseURL: "{{ site.env.DATABASE_URL }}",
-      projectId: "{{ site.env.PROJECT_ID }}",
-      storageBucket: "{{ site.env.STORAGE_BUCKET }}",
-      messagingSenderId: "{{ site.env.SENDER_ID }}",
-      appId: "{{ site.env.APP_ID }}",
-      measurementId: "{{ site.env.MEASUREMENT_ID }}"
-  };
-
-firebase.initializeApp(firebaseConfig);
-const signOutButton = document.getElementById('logout');
-
-'{% if page.url == "/admin/dashboard" %}'
-  function toggleUI() {
-  if (auth.currentUser) {
-  } else {
-    location.href = "{{site.baseurl}}/restricted";
-  }
-}
-'{% endif %}'
-$('#signOutButton').click(() => {
-  firebase.auth().signOut().then(() => {
-    location.href = "{{site.baseurl}}/";
-  }).catch((error) => {
-    alert(error.message);
-  });
-});
-var database = firebase.database();
-var auth = firebase.auth();
-
-//fungsi login
-$('#loginButton').click(() => {
-  const email = $('#email').val();
-  const password = $('#password').val();
+  //inisialisasi Firebase Realtime Database
+    const firebaseConfig = {
+        apiKey: "{{ site.env.API_KEY }}",
+        authDomain: "{{ site.env.AUTH_DOMAIN }}",
+        databaseURL: "{{ site.env.DATABASE_URL }}",
+        projectId: "{{ site.env.PROJECT_ID }}",
+        storageBucket: "{{ site.env.STORAGE_BUCKET }}",
+        messagingSenderId: "{{ site.env.SENDER_ID }}",
+        appId: "{{ site.env.APP_ID }}",
+        measurementId: "{{ site.env.MEASUREMENT_ID }}"
+    };
   
-  // Autentikasi dengan email dan password
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Verifikasi peran admin
-      const uid = userCredential.user.uid;
-      const userRef = firebase.database().ref(`users/${uid}`);
-      userRef.once('value')
-        .then((snapshot) => {
-          const userData = snapshot.val();
-          if (userData.role === 'admin') {
-            // Alihkan ke halaman admin
-            window.location.href = './dashboard';
-          } else {
-              // User bukan admin, arahkan kembali ke luar
-              window.location.href = '/';
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-            Alert();
-        });
-    })
-    .catch((error) => {
-      console.error(error);
-            Alert();
-    });
+  firebase.initializeApp(firebaseConfig);
   
-  async function Alert() {
-    const alert = document.createElement('ion-alert');
-    alert.message = 'E-mail atau password, SALAH!';
-    alert.buttons = ['OK'];
-  
-    document.body.appendChild(alert);
-    await alert.present();
-  }
-
-});
-
-'{% if page.url == "/admin/dashboard" %}'
-// Mengecek apakah user sudah login
-firebase.auth().onAuthStateChanged(function(user) {
-  toggleUI();
-  if (user) {
-    // Mendapatkan informasi user dari database
-database.ref('users/' + user.uid).once('value').then(snapshot => {
-  if (snapshot && snapshot.exists()) {
-    const userData = snapshot.val();
-
-    if (userData.role === 'admin') {
-      // User adalah admin, lanjutkan ke halaman yang diinginkan
+  '{% if page.url == "/admin/dashboard" %}'
+const signOutButton = document.getElementById('signOutButton');
+    function toggleUI() {
+    if (auth.currentUser) {
     } else {
-      // User bukan admin, arahkan kembali ke halaman login
-      window.location.href = '{{site.baseurl}}/admin';
+      signOutButton.classList.add("hidden");
+      location.href = "{{site.baseurl}}/restricted";
     }
-  } else {
-    // Data user tidak ditemukan, arahkan kembali ke halaman lain
-    window.location.href = '{{site.baseurl}}/restricted';
   }
-    }).catch(error => {
-      console.log(error);
+  '{% endif %}'
+  $('#signOutButton').click(() => {
+    firebase.auth().signOut().then(() => {
+      location.href = "{{site.baseurl}}/";
+    }).catch((error) => {
+      alert(error.message);
     });
-  }
-});
-'{% endif %}'
-</script>
+  });
+  var database = firebase.database();
+  var auth = firebase.auth();
+  
+  //fungsi login
+  $('#loginButton').click(() => {
+    const email = $('#email').val();
+    const password = $('#password').val();
+    
+    // Autentikasi dengan email dan password
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Verifikasi peran admin
+        const uid = userCredential.user.uid;
+        const userRef = firebase.database().ref(`users/${uid}`);
+        userRef.once('value')
+          .then((snapshot) => {
+            const userData = snapshot.val();
+            if (userData.role === 'admin') {
+              // Alihkan ke halaman admin
+              window.location.href = './dashboard';
+            } else {
+                // User bukan admin, arahkan kembali ke luar
+                window.location.href = '/';
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+              Alert();
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+              Alert();
+      });
+    
+    async function Alert() {
+      const alert = document.createElement('ion-alert');
+      alert.message = 'E-mail atau password, SALAH!';
+      alert.buttons = ['OK'];
+    
+      document.body.appendChild(alert);
+      await alert.present();
+    }
+  
+  });
+  
+  '{% if page.url == "/admin/dashboard" %}'
+  // Mengecek apakah user sudah login
+  firebase.auth().onAuthStateChanged(function(user) {
+    toggleUI();
+    if (user) {
+      // Mendapatkan informasi user dari database
+  database.ref('users/' + user.uid).once('value').then(snapshot => {
+    if (snapshot && snapshot.exists()) {
+      const userData = snapshot.val();
+  
+      if (userData.role === 'admin') {
+        // User adalah admin, lanjutkan ke halaman yang diinginkan
+      } else {
+        // User bukan admin, arahkan kembali ke halaman login
+        window.location.href = '{{site.baseurl}}/admin';
+      }
+    } else {
+      // Data user tidak ditemukan, arahkan kembali ke halaman lain
+      window.location.href = '{{site.baseurl}}/restricted';
+    }
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+  });
+  '{% endif %}'
+  </script>

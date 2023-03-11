@@ -8,12 +8,7 @@ $('.btn_ticker li').click(function() {
   $(this).toggleClass('item_varian picker').siblings().removeClass('item_varian picker');
 });
 
-/*$('.style-picker div').click(function() {
-  var target = $('#viewStock');
-  $(target).addClass('active').siblings().removeClass('active');
-  $(target).show().siblings('span').hide();
-});
-// Ambil elemen tombol pembelian
+/*// Ambil elemen tombol pembelian
 var tombolBeli = document.getElementById("cartButton");
 
 // Ambil elemen jumlah stok
@@ -28,14 +23,22 @@ if (jumlahStok.active = false) {
   tombolBeli.disabled = false;
 }*/
 
+if (localStorage.getItem('gridView') === 'true') {
+  grid.classList.remove('blog_section');
+  grid.classList.add('blog_gridster');
+}
 function gridster() {
     var grid = document.getElementById("grid");
+  localStorage.setItem('gridView', 'true');
         if (grid.className == "blog_section") {
         grid.className = "blog_gridster";
+  localStorage.setItem('gridView', 'true');
     } else {
         grid.className = "blog_section";
+  localStorage.setItem('gridView', 'false');
     }
 }
+
 const animateOnScroll = document.querySelector('.animate_on_scroll');
 
 window.addEventListener('scroll', () => {
@@ -175,7 +178,7 @@ if (document.cookie.indexOf('popupShown=true') === -1) {
 
   // Tampilkan popup
   // Ganti kode ini dengan kode yang sesuai untuk menampilkan popup Anda
-  alert('Ini adalah popup Anda.');
+  cookieAlert();
 
   // Atur cookie dengan masa kedaluwarsa 1 minggu
   var now = new Date();
@@ -183,4 +186,73 @@ if (document.cookie.indexOf('popupShown=true') === -1) {
   document.cookie = 'popupShown=true; expires=' + expireDate.toUTCString() + '; path=/';
 
 }
+ async function cookieAlert() {
+    const alert = document.createElement('ion-alert');
+    alert.header = 'Cookie Alert';
+    alert.subHeader = 'Aktifkan cookie anda';
+    alert.message = 'Website ini menggunakan cookies untuk meningkatkan pengalaman pengguna. Dengan menggunakan situs web ini, Anda menyetujui penggunaan cookies.';
+    alert.buttons = ['TERIMA'];
+
+    document.body.appendChild(alert);
+  }
+
+// Memuat preloader saat halaman dimuat
+document.onreadystatechange = function () {
+  if (document.readyState === "complete") {
+    // Menghilangkan preloader setelah halaman selesai dimuat
+    document.getElementById("preloader").style.display = "none";
+  } else {
+    // Menampilkan preloader saat halaman sedang dimuat
+    document.getElementById("preloader").style.display = "block";
+  }
+};
+
+// Cek apakah user sudah pernah menerima cookie sebelumnya
+if (localStorage.getItem('cookieAccepted') === 'true') {
+  // Jika sudah, sembunyikan pemberitahuan cookie
+  document.getElementById('cookie-notification').style.display = 'none';
+} else {
+  // Jika belum, tampilkan pemberitahuan cookie
+  document.getElementById('cookie-notification').style.display = 'block';
+}
+
+// Fungsi untuk menyimpan status cookie yang telah diterima
+function acceptCookie() {
+  localStorage.setItem('cookieAccepted', 'true');
+  document.getElementById('cookie-notification').style.display = 'none';
+}
+
+// Event listener pada tombol "Terima"
+document.getElementById('cookie-accept').addEventListener('click', acceptCookie);
+
+const container = document.getElementById('container');
+
+// Cek apakah pengguna telah memilih tampilan grid sebelumnya
+if (localStorage.getItem('gridView') === 'true') {
+  container.classList.remove('flex');
+  container.classList.add('grid');
+}
+
+// Fungsi untuk mengubah tampilan menjadi grid
+function switchToGrid() {
+  container.classList.remove('flex');
+  container.classList.add('grid');
+  localStorage.setItem('gridView', 'true');
+}
+
+// Fungsi untuk mengubah tampilan menjadi flex
+function switchToFlex() {
+  container.classList.remove('grid');
+  container.classList.add('flex');
+  localStorage.setItem('gridView', 'false');
+}
+
+// Event listener pada tombol untuk mengubah tampilan
+document.getElementById('switch-view').addEventListener('click', function() {
+  if (container.classList.contains('flex')) {
+    switchToGrid();
+  } else {
+    switchToFlex();
+  }
+});
 

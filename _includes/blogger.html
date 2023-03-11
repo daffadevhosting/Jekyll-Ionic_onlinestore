@@ -8,32 +8,27 @@
             </ion-button>
         </ion-buttons>
     </ion-card-header>
-    <ion-card-content class="ion-no-padding">
+</ion-card>
 <div id="grid" class="blog_section">
 {% for post in site.blog %}
-    <ion-card>
-<ion-grid>
-  <ion-row>
-    <ion-col size="5" class="ion-float-left">
-      <img class="imgBox" src="{{site.baseurl}}{{ post.image }}">
-    </ion-col>
-    <ion-col class="ion-float-right">
-      <div>
-        <ion-card-subtitle class="ion-margin-bottom" style="font-size:18px;">
-            <ion-router-link href="{{site.baseurl}}{{post.url}}">{{post.title | strip_html | strip | truncate: 15 }}&#x02026;</ion-router-link>
-        </ion-card-subtitle>
-        <p>{{ post.content | strip_html | strip | truncate: 100 }}&#x02026;</p>
-        <ion-item lines="none"><ion-badge>{{post.tags}}</ion-badge>
-        <ion-buttons slot="end">
-        <ion-button href="{{site.baseurl}}{{post.url}}" size="small" color="primary" class="lang" data-key="baca">Baca</ion-button>
-        </ion-buttons>
-      </ion-item>
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-    </ion-card>
+
+    <div class="flexGrid">
+          <img class="imgBox" src="{{site.baseurl}}{{ post.image }}">
+        <div class="blogContent">
+            <div class="contentHeader">
+                <ion-router-link href="{{site.baseurl}}{{post.url}}"><h2>
+                    {{post.title | strip_html | strip | truncate: 15 }}&#x02026;</h2>
+                </ion-router-link>
+            </div>
+            <div class="contentBody">
+                <ion-text>{{ post.content | strip_html | strip | truncate: 100 }}&#x02026;</ion-text>
+            </div>
+            <ion-item lines="none" class="ion-no-padding"><ion-badge>{{post.tags}}</ion-badge>
+            <ion-buttons slot="end">
+            <ion-button href="{{site.baseurl}}{{post.url}}" size="small" color="primary" class="lang" data-key="baca">Baca</ion-button>
+            </ion-buttons>
+          </ion-item>
+        </div>
+    </div>
 {% endfor %}
 </div>
-    </ion-card-content>
-</ion-card>

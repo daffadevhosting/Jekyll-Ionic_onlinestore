@@ -45,7 +45,7 @@ permalink: /home
     <ion-card-header class="flex_center space_between">
         <ion-card-title class="lang" data-key="news">Info Terkini</ion-card-title>
         <ion-buttons>
-            <ion-button onclick="gridster()">
+            <ion-button id="gridBtn" onclick="gridster()">
             <ion-icon name="grid" slot="icon-only"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -56,10 +56,8 @@ permalink: /home
                 </ion-button>
             </ion-buttons>
     </ion-card-header>
-    <ion-card-content class="ion-no-padding">
-        {% include section_latest_info.html %}
-    </ion-card-content>
 </ion-card>
+        {% include section_latest_info.html %}
 
 <div class="widget_section">
         {% include widget_footer.html %}
