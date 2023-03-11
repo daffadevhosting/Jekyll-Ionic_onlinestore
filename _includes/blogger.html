@@ -23,11 +23,11 @@
             <div class="contentBody">
                 <ion-text>{{ post.content | strip_html | strip | truncate: 100 }}&#x02026;</ion-text>
             </div>
-            <ion-item lines="none" class="ion-no-padding"><ion-badge>{{post.tags}}</ion-badge>
+            <div class="flex_center space_between"><ion-badge>{{post.tags}}</ion-badge>
             <ion-buttons slot="end">
             <ion-button href="{{site.baseurl}}{{post.url}}" size="small" color="primary" class="lang" data-key="baca">Baca</ion-button>
             </ion-buttons>
-          </ion-item>
+          </div>
         </div>
     </div>
 {% endfor %}

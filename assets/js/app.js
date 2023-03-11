@@ -39,16 +39,6 @@ function gridster() {
     }
 }
 
-const animateOnScroll = document.querySelector('.animate_on_scroll');
-
-window.addEventListener('scroll', () => {
-  const scrollPosition = window.scrollY + window.innerHeight;
-  const elementPosition = animateOnScroll.offsetTop + animateOnScroll.offsetHeight / 2;
-  if (scrollPosition >= elementPosition) {
-    animateOnScroll.classList.add('animate');
-  }
-});
-
 function wcqib_refresh_quantity_increments() {
   jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
       var c = jQuery(b);
@@ -172,29 +162,6 @@ closeButton.addEventListener("click", () => {
   hidePopup();
   setLastShownTime();
 });
-
-// Cek apakah cookie telah diatur sebelumnya
-if (document.cookie.indexOf('popupShown=true') === -1) {
-
-  // Tampilkan popup
-  // Ganti kode ini dengan kode yang sesuai untuk menampilkan popup Anda
-  cookieAlert();
-
-  // Atur cookie dengan masa kedaluwarsa 1 minggu
-  var now = new Date();
-  var expireDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-  document.cookie = 'popupShown=true; expires=' + expireDate.toUTCString() + '; path=/';
-
-}
- async function cookieAlert() {
-    const alert = document.createElement('ion-alert');
-    alert.header = 'Cookie Alert';
-    alert.subHeader = 'Aktifkan cookie anda';
-    alert.message = 'Website ini menggunakan cookies untuk meningkatkan pengalaman pengguna. Dengan menggunakan situs web ini, Anda menyetujui penggunaan cookies.';
-    alert.buttons = ['TERIMA'];
-
-    document.body.appendChild(alert);
-  }
 
 // Memuat preloader saat halaman dimuat
 document.onreadystatechange = function () {
