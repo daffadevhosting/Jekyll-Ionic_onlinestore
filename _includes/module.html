@@ -1,4 +1,3 @@
-
 <script type="module">
     const firebaseConfig = {
         apiKey: "{{ site.env.API_KEY }}",
@@ -10,9 +9,9 @@
         appId: "{{ site.env.APP_ID }}",
         measurementId: "{{ site.env.MEASUREMENT_ID }}"
     };
-  
+
   firebase.initializeApp(firebaseConfig);
-  
+
   const auth = firebase.auth();
   const userSignedOutDiv = document.getElementById('user-signed-out');
   const userSignedInDiv = document.getElementById('user-signed-in');
@@ -22,7 +21,7 @@
   const userImg = document.getElementById('user_img');
   const signOutButton = document.getElementById('sign-out-button');
   const signInButton = document.getElementById('sign-in-button');
-  
+
 function toggleUI() {
   if (auth.currentUser) {
     signInButton.classList.add("hidden");
@@ -39,30 +38,30 @@ function toggleUI() {
         document.querySelector('#userImg').src = firebase.auth().currentUser.photoURL
   }
 }
-  
+
   signOutButton.addEventListener('click', () => {
   auth.signOut();
   alert('Kamu akan meninggalkan halaman ini..');
     location.href = "{{site.baseurl}}/";
-  
+
   });
-  
+
   auth.onAuthStateChanged(user => {
   toggleUI();
   });
-  
+
   var database = firebase.database();
   var firestore = firebase.firestore();
-  
+
   // Tambahkan event listener ke tombol like
   document.getElementById("likeButton").addEventListener("click", function() {
   // Ambil UID pengguna yang sedang masuk
   var user = firebase.auth().currentUser;
   var uid = user.uid;
-  
+
   // Tentukan halaman yang akan diberi like
   var halaman = '{{page.ID}}';
-  
+
   // Periksa apakah pengguna sudah memberikan like sebelumnya
   firestore.collection('likes').doc(uid).get().then(function(doc) {
     if (doc.exists) {
@@ -73,16 +72,16 @@ function toggleUI() {
         return;
       }
     }
-  
+
   async function existAlert() {
     const alert = document.createElement('ion-alert');
     alert.message = 'Kamu sudah memberikan like untuk produk ini. 😎️';
     alert.buttons = ['OK'];
-  
+
     document.body.appendChild(alert);
     await alert.present();
   }
-  
+
     // Tambahkan "like" ke Firestore database
     var likeData = {};
     likeData[halaman] = true;
@@ -99,25 +98,25 @@ function toggleUI() {
     });
   });
   });
-  
+
   async function successAlert() {
     const alert = document.createElement('ion-alert');
     alert.message = '🤩️ Terima Kasih sudah menyukai produk ini..!';
     alert.buttons = ['OKEY'];
-  
+
     document.body.appendChild(alert);
     await alert.present();
   }
-  
+
   // Tambahkan event listener ke tombol unlike
   document.getElementById("unlikeButton").addEventListener("click", function() {
   // Ambil UID pengguna yang sedang masuk
   var user = firebase.auth().currentUser;
   var uid = user.uid;
-  
+
   // Tentukan halaman yang akan di-unlike
   var halaman = '{{page.ID}}';
-  
+
   // Hapus "like" dari Firestore database
   firestore.collection('likes').doc(uid).set({
     [halaman]: firebase.firestore.FieldValue.delete()
@@ -131,30 +130,30 @@ function toggleUI() {
     alert(error.message);
   });
   });
-  
+
   async function eraseAlert() {
     const alert = document.createElement('ion-alert');
     alert.message = 'Kamu sudah tidak menyukai produk ini..! 😭️';
     alert.buttons = ['Jangan Sedih'];
-  
+
     document.body.appendChild(alert);
     await alert.present();
   }
-  
+
   // Fungsi untuk mengambil jumlah like dari Firestore
   function getLikeCount(halaman) {
   return firestore.collection('likes').where(halaman, '==', true).get().then(function(querySnapshot) {
     return querySnapshot.size;
   });
   }
-  
+
   // Fungsi untuk memperbarui jumlah like di halaman HTML
   function updateLikeCount(halaman) {
   getLikeCount(halaman).then(function(count) {
     document.getElementById("likeCount").textContent = count;
   });
   }
-  
+
   const likeBtn = document.getElementById('likeButton');
   likeBtn.addEventListener('click', () => {
     likeBtn.classList.add('hidden');
@@ -174,24 +173,24 @@ function toggleUI() {
     unlikeBtn.classList.add('active');
     } 
   document.getElementById("unlikeButton").style.display = "none";
-  
+
   // rating-stars
   const stars = document.querySelectorAll('.star');
   const databaseRef = firebase.database().ref('ratings');
   let currentRating = 0;
-  
+
   function setRating(starClicked) {
   let clickedIndex = Array.from(stars).indexOf(starClicked);
-  
+
   if (clickedIndex === -1) {
     return;
   }
-  
+
   const newRating = clickedIndex + 1;
   currentRating = newRating;
-  
+
   databaseRef.set(newRating);
-  
+
   for (let i = 0; i < stars.length; i++) {
     if (i <= clickedIndex) {
       stars[i].classList.add('active');
@@ -200,18 +199,18 @@ function toggleUI() {
     }
   }
   }
-  
+
   stars.forEach((star) => {
   star.addEventListener('click', () => {
     setRating(star);
   });
   });
-  
+
   databaseRef.on('value', (snapshot) => {
   const newRating = snapshot.val();
   if (newRating !== null) {
     currentRating = newRating;
-  
+
     for (let i = 0; i < stars.length; i++) {
       if (i < newRating) {
         stars[i].classList.add('active');
@@ -221,7 +220,7 @@ function toggleUI() {
     }
   }
   });
-  
+
   // Panggil fungsi updateLikeCount saat halaman selesai dimuat
   document.addEventListener("DOMContentLoaded", function(event) { 
   var halaman = '{{page.ID}}';
