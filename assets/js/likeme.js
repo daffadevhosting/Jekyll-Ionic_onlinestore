@@ -1,15 +1,15 @@
 // Initialize Firebase (ensure this is done before using Firebase services)
 if (!firebase.apps.length) {
     firebase.initializeApp({
-        // Your Firebase config here
-        apiKey: "{{ site.env.API_KEY }}",
-        authDomain: "{{ site.env.AUTH_DOMAIN }}",
-        databaseURL: "{{ site.env.DATABASE_URL }}",
-        projectId: "{{ site.env.PROJECT_ID }}",
-        storageBucket: "{{ site.env.STORAGE_BUCKET }}",
-        messagingSenderId: "{{ site.env.SENDER_ID }}",
-        appId: "{{ site.env.APP_ID }}",
-        measurementId: "{{ site.env.MEASUREMENT_ID }}"
+        // Your Firebase config 
+  apiKey: "AIzaSyCV3i_KliUAxYTI4RoC_VpFZxJ8-EjO2bA",
+  authDomain: "jekyll-onlineshop.firebaseapp.com",
+  databaseURL: "https://jekyll-onlineshop-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "jekyll-onlineshop",
+  storageBucket: "jekyll-onlineshop.firebasestorage.app",
+  messagingSenderId: "1080130094512",
+  appId: "1:1080130094512:web:fda6d8485c8d0ed6a78275",
+  measurementId: "G-75QG8P9ZSM"
     });
 }
 
