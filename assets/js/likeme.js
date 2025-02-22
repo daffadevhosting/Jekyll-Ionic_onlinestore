@@ -2,6 +2,14 @@
 if (!firebase.apps.length) {
     firebase.initializeApp({
         // Your Firebase config here
+        apiKey: "{{ site.env.API_KEY }}",
+        authDomain: "{{ site.env.AUTH_DOMAIN }}",
+        databaseURL: "{{ site.env.DATABASE_URL }}",
+        projectId: "{{ site.env.PROJECT_ID }}",
+        storageBucket: "{{ site.env.STORAGE_BUCKET }}",
+        messagingSenderId: "{{ site.env.SENDER_ID }}",
+        appId: "{{ site.env.APP_ID }}",
+        measurementId: "{{ site.env.MEASUREMENT_ID }}"
     });
 }
 
