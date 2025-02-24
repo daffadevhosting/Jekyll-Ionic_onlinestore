@@ -5,7 +5,7 @@ layout: default
 {% include breadcrumb.html %}
 <div class="single_product simpleCart_shelfItem" pageid="{{page.ID}}">
 {% if page.stok != 'Tersedia' %}
-<ion-backdrop [visible]="true"></ion-backdrop>
+<ion-backdrop [visible]="true" style="z-index:999;"></ion-backdrop>
 {% else %}
 {% endif %}
     <div class="single_image">
